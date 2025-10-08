@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.7">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!doctype html&gt;</p>
+<p class="p1">&lt;html lang="ja"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1">&lt;meta charset="utf-8" /&gt;</p>
+<p class="p1">&lt;title&gt;金種計算ページ&lt;/title&gt;</p>
+<p class="p1">&lt;script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"&gt;&lt;/script&gt;</p>
+<p class="p1">&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>body{font-family:sans-serif;max-width:600px;margin:auto;padding:20px;}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>table{width:100%;border-collapse:collapse;margin:10px 0;}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>th,td{border:1px solid #ccc;padding:6px;text-align:right;}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>th{text-align:left;background:#f4f4f4;}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>input[type="number"]{width:80px;}</p>
+<p class="p1">&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p1">&lt;h1&gt;金種計算&lt;/h1&gt;</p>
+<p class="p1">&lt;table&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;thead&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;tr&gt;&lt;th&gt;金種（円）&lt;/th&gt;&lt;th&gt;枚数&lt;/th&gt;&lt;th&gt;小計&lt;/th&gt;&lt;/tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/thead&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;tbody id="tbody"&gt;&lt;/tbody&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;tfoot&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;tr&gt;&lt;td&gt;合計&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td id="total"&gt;0&lt;/td&gt;&lt;/tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/tfoot&gt;</p>
+<p class="p1">&lt;/table&gt;</p>
+<p class="p1">&lt;script&gt;</p>
+<p class="p1">const denoms=[10000,5000,1000,500,100,50,10,5,1];</p>
+<p class="p1">const tbody=document.getElementById('tbody');</p>
+<p class="p1">const totalEl=document.getElementById('total');</p>
+<p class="p1">function makeRow(d){const tr=document.createElement('tr');tr.innerHTML=`&lt;td&gt;${d}&lt;/td&gt;&lt;td&gt;&lt;input type="number" value="0" min="0"&gt;&lt;/td&gt;&lt;td class="subtotal"&gt;0&lt;/td&gt;`;tbody.appendChild(tr);tr.querySelector('input').addEventListener('input',update);}</p>
+<p class="p1">function update(){let total=0;for(const tr of tbody.children){const d=Number(tr.children[0].textContent);const c=Number(tr.children[1].querySelector('input').value);const sub=d*c;tr.children[2].textContent=sub.toLocaleString();total+=sub;}totalEl.textContent=total.toLocaleString();}</p>
+<p class="p1">denoms.forEach(makeRow);update();</p>
+<p class="p1">&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
